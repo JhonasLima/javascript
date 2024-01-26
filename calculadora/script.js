@@ -2,9 +2,10 @@ var botoes = document.querySelectorAll('.botoesNum')
 
 botoes.forEach(function(botao){
 botao.addEventListener('click', function(){
-    var input = document.querySelectorAll(".txtVisor")
+    var visor = document.querySelectorAll(".visor")
     var valorBotao = botao.value
-    input.value = valorBotao
+    visor.innerHTML = valorBotao.stringify
+    console.log(valorBotao)
 })
 
 })
