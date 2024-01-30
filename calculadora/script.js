@@ -3,8 +3,18 @@ var botoesOpe = document.querySelectorAll('.botoesOpe')
 var visor = document.querySelector('.visor')
 var numeros = []
 var operacoes = []
+var numTemp = ""
 
 botoesNum.forEach(function (botao) {
+    botao.addEventListener('click', function () {
+        let valorBotao = parseFloat(botao.value)
+        numTemp = numTemp.toString() + valorBotao.toString()
+        visor.innerHTML = numTemp
+        console.log(numTemp)
+    })
+})
+
+/*botoesNum.forEach(function (botao) {
     botao.addEventListener('click', function () {
         let valorBotao = parseFloat(botao.value)
         numeros.push(valorBotao)
@@ -52,4 +62,4 @@ function resul() {
         }
     }
     console.log(resultado)
-}
+}*/
