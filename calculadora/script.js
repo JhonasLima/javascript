@@ -2,7 +2,7 @@ var botoesNum = document.querySelectorAll('.botoesNum')
 var botoesOpe = document.querySelectorAll('.botoesOpe')
 var visor = document.querySelector('.visor')
 var numeros = []
-var operacoes = []
+var visorTemp = []
 var numTemp = ""
 
 botoesNum.forEach(function (botao) {
@@ -14,19 +14,25 @@ botoesNum.forEach(function (botao) {
     })
 })
 
-/*botoesNum.forEach(function (botao) {
+botoesOpe.forEach(function (botao) {
     botao.addEventListener('click', function () {
-        let valorBotao = parseFloat(botao.value)
-        numeros.push(valorBotao)
-        visor.innerHTML = numeros.join("")
-        if (numeros.length > 1) {
-            resul()
+        let valorBotao = (botao.value)
+        if(numTemp == ""){
+            alert("Digite um numero antes.")
         }
+        else {
+            numeros.push(numTemp, valorBotao)
+            numTemp = ""
+            visor.innerHTML = numeros.join("")
+        }
+        /*if (numeros.length > 1) {
+            resul()
+        }*/
         console.log(numeros)
     })
 
 })
-
+/*
 botoesOpe.forEach(function (botao) {
     botao.addEventListener('click', function () {
         let valorBotao = botao.value;
