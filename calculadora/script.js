@@ -5,67 +5,66 @@ var numeros = []
 var visorTemp = []
 var numTemp = ""
 
-botoesNum.forEach(function (botao) {
-    botao.addEventListener('click', function () {
-        let valorBotao = parseFloat(botao.value)
-        numTemp = numTemp.toString() + valorBotao.toString()
-        visor.innerHTML = numTemp
-        console.log(numTemp)
+    botoesNum.forEach(function (botao) {
+        botao.addEventListener('click', function () {
+            let valorBotao = parseFloat(botao.value)
+            numTemp = numTemp.toString() + valorBotao.toString()
+            if (numeros.length === 0) {
+                visor.innerHTML = numTemp
+            } else {
+                visor.innerHTML = numeros.join("") + numTemp
+            }
+            console.log(numTemp)
+        })
     })
-})
 
 botoesOpe.forEach(function (botao) {
     botao.addEventListener('click', function () {
         let valorBotao = (botao.value)
-        if(numTemp == ""){
+        if (numTemp == "") {
             alert("Digite um numero antes.")
         }
         else {
             numeros.push(numTemp, valorBotao)
             numTemp = ""
-            visor.innerHTML = numeros.join("")
+            visor.innerHTML = numeros.join("") + numTemp
         }
-        /*if (numeros.length > 1) {
-            resul()
-        }*/
         console.log(numeros)
     })
 
 })
-/*
-botoesOpe.forEach(function (botao) {
-    botao.addEventListener('click', function () {
-        let valorBotao = botao.value;
-        let visorConteudo = visor.innerHTML.trim();
 
-        if (visorConteudo !== '') {
-            let ultimoCaractere = visorConteudo.slice(-1);
-            if (isNaN(ultimoCaractere)) {
-                visor.innerHTML = visorConteudo.slice(0, -1);
-            }
-            numeros.push(parseFloat(visorConteudo));
-            operacoes.push(valorBotao);
-            visor.innerHTML += valorBotao;
-        }
-    });
-});
+function calcular(){
+    if(numeros.length > 0){
+        numeros.push(numTemp)
+        let resultado = resul(numeros)
+        numeros.push(resultado)
+        console.log(resultado)
+        console.log(numeros)
+    }
+}
 
+function resul(numeros) {
+    let resultado = parseFloat(numeros[0])
 
-function resul() {
-    var resultado = numeros[0]
-    for (let i = 0; i < operacoes.length; i++) {
-        const operador = operacoes[i]
-        const proximoNumero = numeros[i + 1]
+    for (let i = 1; i < numeros.length; i += 2) {
+        const operador = numeros[i]
+        const numero = parseFloat(numeros[i + 1])
 
-        if (operador === '+') {
-            resultado += proximoNumero
-        } else if (operador === '-') {
-            resultado -= proximoNumero
-        } else if (operador === '/') {
-            resultado /= proximoNumero
-        } else if (operador === '*') {
-            resultado *= proximoNumero
+        switch (operador) {
+            case '+':
+                resultado += numero;
+                break;
+            case '-':
+                resultado -= numero;
+                break;
+            case '/':
+                resultado /= numero;
+                break;
+            case '+':
+                resultado *= numero;
+                break;
         }
     }
-    console.log(resultado)
-}*/
+    return resultado;
+}
