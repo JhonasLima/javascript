@@ -3,6 +3,7 @@ var botoesOpe = document.querySelectorAll('.botoesOpe')
 var visor = document.querySelector('.visor')
 var numeros = []
 var visorTemp = []
+resulCalc = []
 var numTemp = ""
 
     botoesNum.forEach(function (botao) {
@@ -21,26 +22,37 @@ var numTemp = ""
 botoesOpe.forEach(function (botao) {
     botao.addEventListener('click', function () {
         let valorBotao = (botao.value)
-        if (numTemp == "") {
+        if (numTemp == "" && numeros.length == []){
             alert("Digite um numero antes.")
+        } else if (numTemp === numeros[numeros.length-1]){ //Adionar apenas o operador
+            numeros.push(valorBotao)
+            numTemp = ""
+            visor.innerHTML = numeros.join("")
         }
         else {
             numeros.push(numTemp, valorBotao)
             numTemp = ""
             visor.innerHTML = numeros.join("") + numTemp
         }
-        console.log(numeros)
     })
 
 })
 
 function calcular(){
-    if(numeros.length > 0){
+    if(resulCalc[resulCalc.length-1] == resul(numeros) && numTemp == ""){
+     alert("Digite um operação e mais um numero para continuar")
+    }
+    
+    else if (numeros.length > 0){
+        if(numTemp !== ""){//verificar aqui amanhã
         numeros.push(numTemp)
+        }
+        numTemp = ""
         let resultado = resul(numeros)
-        numeros.push(resultado)
+        resulCalc.push(resultado)
         console.log(resultado)
         console.log(numeros)
+        console.log(resulCalc)
     }
 }
 
@@ -61,7 +73,7 @@ function resul(numeros) {
             case '/':
                 resultado /= numero;
                 break;
-            case '+':
+            case '*':
                 resultado *= numero;
                 break;
         }
