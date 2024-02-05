@@ -34,6 +34,7 @@ botoesOpe.forEach(function (botao) {
             numTemp = ""
             visor.innerHTML = numeros.join("") + numTemp
         }
+        console.log(numeros)
     })
 
 })
@@ -44,10 +45,8 @@ function calcular(){
     }
     
     else if (numeros.length > 0){
-        if(numTemp !== ""){//verificar aqui amanhã
         numeros.push(numTemp)
-        }
-        numTemp = ""
+        //numTemp = ""
         let resultado = resul(numeros)
         resulCalc.push(resultado)
         console.log(resultado)
