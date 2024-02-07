@@ -10,8 +10,8 @@ var numTemp = ""
     botoesNum.forEach(function (botao) {
         botao.addEventListener('click', function () {
             let valorBotao = parseFloat(botao.value)
-            
-            if(numTemp == "" && numeros.length !== 0 && resulTemp == resul(numeros)){//Não permite que seja digitado outro numero apos a função resultado, permitido apenas operadores.
+            numeros = numeros.filter(elementos => elementos)
+            if(numTemp == "" && numeros.length !== 0 && resulTemp == resul(numeros) && numeros.length-1 !== "+" && numeros.length-1 !== "-" && numeros.length-1 !== "*" && numeros.length-1 !== "/"){//Não permite que seja digitado outro numero apos a função resultado, permitido apenas operadores.
                 alert("digite um operador")
                 resulTemp = ""
             } else {
@@ -30,6 +30,7 @@ var numTemp = ""
 botoesOpe.forEach(function (botao) {
     botao.addEventListener('click', function () {
         let valorBotao = (botao.value)
+        numeros = numeros.filter(elementos => elementos)
         if (numTemp === "" && numeros.length == []){
             alert("Digite um numero antes.")
         } else if (numTemp === numeros[numeros.length-1]){ //Adionar apenas o operador
