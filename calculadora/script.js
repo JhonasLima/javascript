@@ -30,16 +30,16 @@ var numTemp = ""
 botoesOpe.forEach(function (botao) {
     botao.addEventListener('click', function () {
         let valorBotao = (botao.value)
-        numeros = numeros.filter(elementos => elementos)
-        if (numTemp === "" && numeros.length == []){
+        numeros = numeros.filter(elementos => elementos) //Retira os indeces com valores vazio
+        if (numTemp === "" && numeros.length === 0){
             alert("Digite um numero antes.")
-        } else if (numTemp === numeros[numeros.length-1]){ //Adionar apenas o operador
+        } /*else if (numTemp === numeros[numeros.length-1]){ //Adionar apenas o operador
             numeros.push(valorBotao)
             numTemp = ""
             visor.innerHTML = numeros.join("")
-        }
+        }*/
         else {
-            numeros.push(numTemp, valorBotao)
+            numeros.push(numTemp, valorBotao) //Adiciona o operador e juntamente com o valor de numTemp
             numTemp = ""
             visor.innerHTML = numeros.join("") + numTemp
         }
@@ -52,7 +52,6 @@ function calcular(){
     if(resulCalc == resul(numeros) && numTemp === ""){
      alert("Digite um operação e mais um numero para continuar")
     }
-    
     else if (numeros.length > 0){
         numeros.push(numTemp)
         numTemp = ""
