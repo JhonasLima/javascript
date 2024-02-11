@@ -2,27 +2,31 @@ var botoesNum = document.querySelectorAll('.botoesNum')
 var botoesOpe = document.querySelectorAll('.botoesOpe')
 var visor = document.querySelector('.visor')
 var numeros = []
-//var visorTemp = []
 var resulCalc = ""
 var resulTemp = ""
 var numTemp = ""
+
+    function atualizarTela(){
+        visor.innerHTML = numeros.join("")
+    }
 
     botoesNum.forEach(function (botao) {
         botao.addEventListener('click', function () {
             let valorBotao = parseFloat(botao.value)
             numeros = numeros.filter(elementos => elementos)
             if(numTemp == "" && numeros.length !== 0 && resulTemp == resul(numeros) && numeros.length-1 !== "+" && numeros.length-1 !== "-" && numeros.length-1 !== "*" && numeros.length-1 !== "/"){//Não permite que seja digitado outro numero apos a função resultado, permitido apenas operadores.
-                alert("digite um operador")
-                resulTemp = ""
+                alert("digite um operador")  
             } else {
+                resulTemp = ""
                 numTemp = numTemp.toString() + valorBotao.toString()
+                if (numeros.length === 0) {
+                    visor.innerHTML = numTemp
+                } else {
+                    visor.innerHTML = numeros.join("") + numTemp
+                }
             }
 
-            if (numeros.length === 0) {
-                visor.innerHTML = numTemp
-            } else {
-                visor.innerHTML = numeros.join("") + numTemp
-            }
+            
             console.log(numTemp)
         })
     })
@@ -30,8 +34,9 @@ var numTemp = ""
 botoesOpe.forEach(function (botao) {
     botao.addEventListener('click', function () {
         let valorBotao = (botao.value)
+        let ultimoIndice = numeros[numeros.length-1]
         numeros = numeros.filter(elementos => elementos) //Retira os indeces com valores vazio
-        if (numTemp === "" && numeros.length === 0){
+        if (numTemp === "" && numeros.length === 0 || numTemp === "" && ultimoIndice === "+" || numTemp === "" && ultimoIndice === "-" || numTemp === "" && ultimoIndice === "*" || numTemp === "" && ultimoIndice === "/"){
             alert("Digite um numero antes.")
         } /*else if (numTemp === numeros[numeros.length-1]){ //Adionar apenas o operador
             numeros.push(valorBotao)
@@ -51,6 +56,8 @@ botoesOpe.forEach(function (botao) {
 function calcular(){
     if(resulCalc == resul(numeros) && numTemp === ""){
      alert("Digite um operação e mais um numero para continuar")
+    } else if (numeros[numeros.length-1] === "+" && numTemp === ""){
+        alert("Digite um numero")
     }
     else if (numeros.length > 0){
         numeros.push(numTemp)
@@ -87,4 +94,25 @@ function resul(numeros) {
         }
     }
     return resultado;
+}
+
+function limpar(){
+    numeros = []
+    resulCalc = ""
+    resulTemp = ""
+    numTemp = ""
+    visor.innerHTML = ""
+    console.log(resulCalc)
+    console.log(numeros)
+}
+
+function apagar(){
+    if(numTemp !== ""){
+        numTemp =""
+        atualizarTela()
+    } else {
+    numeros.pop()
+    console.log(numeros)
+    atualizarTela()
+    }
 }
