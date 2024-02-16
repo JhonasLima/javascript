@@ -38,13 +38,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .visorDados { /*aqui*/
     width: 70%;
-    font-size: 35px;
-    overflow-x: scroll;
-    text-align: start;
+    max-height: 70px;
+    font-size: 30px;
+    word-break: break-word;
+    overflow: auto;
+    
+}
+
+.visorDados::-webkit-scrollbar {
+    width: 1px;
 }
 
 .visorResultado {

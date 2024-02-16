@@ -91,7 +91,7 @@ function resul(numeros) {
             case '/':
                 resultado /= numero;
                 break;
-            case '*':
+            case 'x':
                 resultado *= numero;
                 break;
         }
