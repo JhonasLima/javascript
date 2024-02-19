@@ -28,7 +28,7 @@ botoesNum.forEach(function (botao) {
                 visorDados.innerHTML = numeros.join("") + numTemp
             }
         }
-
+        visorDados.scrollTop = visorDados.scrollHeight
         console.log(numTemp)
     })
 })
@@ -118,3 +118,4 @@ function apagar() {
         atualizarTela()
     }
 }
+
