@@ -6,10 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Calculadora</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <body>
     <div class="calculadora">
+        <span class="material-symbols-outlined" id="btnInformacao">
+            info
+        </span>
+            <div id="informacao">
+                <p>Projeto feito com o intuito de aprendizado, na versão atual não estão sendo aplicadas as
+                    regras de precedência.</p>
+            </div>
         <div class="tela" id="tela">
             <div class="visorDados" id="visorDados">
 
@@ -30,7 +39,7 @@
             <input type="button" value="2" class="botoes botoesNum">
             <input type="button" value="3" class="botoes botoesNum">
             <input type="button" value="0" class="botoes botoesNum">
-            <input type="button" value="00" class="botoes botoesNum">
+            <input type="button" data-value="00" value="00" class="botoes botoesNum">
             <input type="button" value="." class="botoes botoesNum">
         </div>
         <div class="btnFuncoesLaterais">
