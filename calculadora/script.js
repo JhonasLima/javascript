@@ -15,12 +15,8 @@ function atualizarTela() {
 
 botoesNum.forEach(function (botao) {
     botao.addEventListener('click', function () {
-        let valorBotao
-        if(botao.value !== "."){
-            valorBotao = parseFloat(botao.value) || botao.getAttribute('data-value')//data-value está passando o valo de dois zeros
-        } else {
-            valorBotao = botao.value
-        }
+        let valorBotao = botao.value
+         
         
         numeros = numeros.filter(elementos => elementos)
         if (numTemp == "" && numeros.length !== 0 && resulTemp == resul(numeros) && numeros.length - 1 !== "+" && numeros.length - 1 !== "-" && numeros.length - 1 !== "*" && numeros.length - 1 !== "/") {//Não permite que seja digitado outro numero apos a função resultado, permitido apenas operadores.
@@ -28,6 +24,11 @@ botoesNum.forEach(function (botao) {
         } else {
             resulTemp = ""
             numTemp = numTemp.toString() + valorBotao.toString()
+            
+            if(botao.value !== "."){
+                valorBotao = parseFloat(botao.value) || botao.getAttribute('data-value')//data-value está passando o valo de dois zeros
+            }
+
             if (numeros.length === 0) {
                 visorDados.innerHTML = numTemp
             } else {
